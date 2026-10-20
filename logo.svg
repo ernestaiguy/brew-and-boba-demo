@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <circle cx="256" cy="256" r="246" fill="#fbf5ec" stroke="#5a3a22" stroke-width="14"/>
+  <!-- straw -->
+  <rect x="268" y="52" width="30" height="190" rx="10" fill="#f4a7b9" transform="rotate(14 283 147)"/>
+  <!-- lid -->
+  <path d="M150 170 Q256 120 362 170 L362 190 L150 190 Z" fill="#5a3a22"/>
+  <!-- cup -->
+  <path d="M160 190 L352 190 L328 420 Q326 440 306 440 L206 440 Q186 440 184 420 Z" fill="#e9d3b6" stroke="#5a3a22" stroke-width="12" stroke-linejoin="round"/>
+  <!-- tea fill -->
+  <path d="M170 250 Q256 228 342 250 L328 420 Q326 432 306 432 L206 432 Q186 432 184 420 Z" fill="#b07a4a"/>
+  <!-- pearls -->
+  <g fill="#2e1d10">
+    <circle cx="214" cy="404" r="14"/><circle cx="248" cy="410" r="14"/><circle cx="282" cy="406" r="14"/><circle cx="306" cy="390" r="12"/>
+    <circle cx="230" cy="378" r="13"/><circle cx="266" cy="382" r="13"/><circle cx="208" cy="372" r="11"/>
+  </g>
+  <!-- face -->
+  <circle cx="226" cy="300" r="9" fill="#2e1d10"/><circle cx="288" cy="300" r="9" fill="#2e1d10"/>
+  <path d="M240 320 Q257 336 274 320" stroke="#2e1d10" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <circle cx="208" cy="320" r="10" fill="#f4a7b9" opacity=".8"/><circle cx="306" cy="320" r="10" fill="#f4a7b9" opacity=".8"/>
+</svg>
