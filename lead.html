@@ -1,0 +1,35 @@
+<!doctype html><html lang="en"><head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KQWDF2WQ');</script>
+<!-- End Google Tag Manager -->
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"><script src="track.js"></script><link rel="icon" href="logo.svg"><title>Brew & Boba — Get 15% Off</title></head><body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KQWDF2WQ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div class="wrap"><nav><a class="logo" href="index.html"><img src="logo.svg" alt="" style="height:44px;vertical-align:middle;margin-right:8px">Brew &amp; Boba</a><a class="btn" href="sales.html" data-track="Nav Shop Now">Shop Now</a></nav>
+<div class="hero" style="padding-top:20px"><div><span class="tag">🎁 New sipper gift</span>
+<h1>Get 15% off your first order + a free recipe e-book</h1>
+<p>Join 10,000+ milk tea lovers. Enter your details and we'll show your discount code right away, plus 12 café-style milk tea recipes.</p>
+<ul style="list-style:none;line-height:2;font-weight:600"><li>✅ 15% off any bundle</li><li>✅ Free "12 Café Recipes" e-book</li><li>✅ Early access to new flavours</li></ul></div>
+<div><form class="checkout" id="leadForm" style="margin:0"><h3>Claim my 15% off</h3>
+<label>First name</label><input id="ln" required placeholder="Wei Ling">
+<label>Email</label><input id="le" type="email" required placeholder="you@email.com">
+<label>WhatsApp number (optional)</label><input placeholder="+65 8123 4567">
+<label>Favourite flavour</label><select id="lf" style="width:100%;padding:12px 14px;border:2px solid var(--milk);border-radius:12px;font:inherit"><option>Classic Milk Tea</option><option>Brown Sugar</option><option>Matcha Latte</option><option>Strawberry Milk</option></select>
+<br><br><button class="btn" style="width:100%" data-track="Lead Submit">Get My Discount 🎁</button>
+<p class="note">Demo form: nothing is stored or sent.</p></form>
+<div class="checkout" id="leadDone" style="display:none;margin:0;text-align:center"><div style="font-size:4rem">🎉</div><h3>You're in, <span id="lname"></span>!</h3><p>Your discount code:</p>
+<div class="timer" style="font-size:1.6rem;letter-spacing:.1em">SIP15</div><p style="margin:14px 0">The recipe e-book is on its way to your inbox.</p>
+<a class="btn" href="sales.html?code=SIP15" data-track="Lead Shop With Code">Shop Bundles with 15% Off →</a></div></div></div></div>
+<footer>© 2026 Brew &amp; Boba · Demo website for filming only, not a real store.<br><a href="privacy.html" data-track="Footer Privacy">Privacy Policy</a> · <a href="terms.html" data-track="Footer Terms">Terms</a> · <a href="contact.html" data-track="Footer Contact">Contact</a></footer>
+<script>
+leadForm.onsubmit=e=>{e.preventDefault();
+track('Lead',{content_name:'15% Off + Recipe E-book',content_category:'Newsletter',favourite_flavour:lf.value,currency:'SGD',value:0});
+lname.textContent=ln.value;leadForm.style.display='none';leadDone.style.display='block'};
+</script></body></html>
