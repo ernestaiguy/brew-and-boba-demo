@@ -1,0 +1,40 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"><script src="track.js"></script><title>Brew & Boba — Shop Bundles</title></head><body>
+<div class="wrap"><nav><a class="logo" href="index.html">🧋 Brew &amp; Boba</a><span>🚚 Free shipping</span></nav>
+<section class="center" style="padding-top:30px"><span class="tag">🔥 Launch Sale: 40% OFF</span><h2 style="font-size:2.8rem">Pick your Milk Tea Bundle</h2>
+<p>Each pouch makes 20 cups. Offer ends in:</p><div class="timer" id="timer">14:59</div>
+<div class="flavors">
+<div class="flavor" style="background:#e9d3b6">🧋 Classic Milk Tea</div>
+<div class="flavor" style="background:#d9a77a">🍯 Brown Sugar</div>
+<div class="flavor" style="background:#cfe3b8">🍵 Matcha Latte</div>
+<div class="flavor" style="background:#f7c9d4">🍓 Strawberry Milk</div></div>
+<div class="grid3" id="plans">
+<div class="card plan" data-name="Starter Pack (1 pouch)" data-price="19"><h3>Starter</h3><p>1 pouch · 20 cups</p><div class="price">S$19<s>S$32</s></div><ul><li>Any 1 flavour</li><li>Free shipping</li></ul></div>
+<div class="card plan sel" data-name="Boba Lover (3 pouches)" data-price="45"><span class="badge">MOST POPULAR</span><h3>Boba Lover</h3><p>3 pouches · 60 cups</p><div class="price">S$45<s>S$96</s></div><ul><li>Mix any 3 flavours</li><li>Free tapioca pearls</li><li>Free shipping</li></ul></div>
+<div class="card plan" data-name="Family Pack (6 pouches)" data-price="79"><h3>Family Pack</h3><p>6 pouches · 120 cups</p><div class="price">S$79<s>S$192</s></div><ul><li>All 4 flavours + 2 extra</li><li>Free pearls + shaker</li><li>Free shipping</li></ul></div>
+</div>
+<form class="checkout" id="checkout"><h3>Checkout</h3>
+<label>Full name</label><input id="name" required placeholder="Ali Tan">
+<label>Email</label><input type="email" required placeholder="you@email.com">
+<label>Shipping address</label><input required placeholder="12 Orchard Road, Singapore 238826">
+<label>Card number (demo, use any number)</label><input value="4242 4242 4242 4242">
+<div class="row"><div><label>Expiry</label><input value="12/28"></div><div><label>CVC</label><input value="123"></div></div>
+<div class="summary"><span id="sumName">Boba Lover (3 pouches)</span><span id="sumPrice">S$45</span></div>
+<button class="btn" style="width:100%" data-track="Complete Purchase">Complete Purchase 🧋</button>
+<p class="note">🔒 Demo checkout: no payment is processed.</p></form>
+</section>
+<section class="center"><h2>FAQ</h2><div style="max-width:700px;margin:20px auto;text-align:left">
+<details class="card" style="margin-bottom:12px" data-track="FAQ How to make"><summary><b>How do I make it?</b></summary><p>Add 2 tbsp of powder to 200ml hot water, stir, then add ice for an iced version.</p></details>
+<details class="card" style="margin-bottom:12px" data-track="FAQ Shelf life"><summary><b>How long does it last?</b></summary><p>12 months unopened. Use within 2 months once opened.</p></details>
+<details class="card" style="margin-bottom:12px" data-track="FAQ Halal"><summary><b>Is it halal?</b></summary><p>Yes, all our powders are made with halal-certified ingredients.</p></details>
+<details class="card" data-track="FAQ Delivery"><summary><b>When will I receive it?</b></summary><p>Island-wide delivery in 1–2 working days, and shipping is free.</p></details>
+</div></section></div>
+<footer>© 2026 Brew &amp; Boba · Demo website for filming only, not a real store.<br><a href="privacy.html" data-track="Footer Privacy">Privacy Policy</a> · <a href="terms.html" data-track="Footer Terms">Terms</a> · <a href="contact.html" data-track="Footer Contact">Contact</a></footer>
+<script>
+const plans=document.querySelectorAll('.plan');
+plans.forEach(p=>p.onclick=()=>{track('AddToCart',{content_name:p.dataset.name,value:+p.dataset.price,currency:'SGD'});plans.forEach(x=>x.classList.remove('sel'));p.classList.add('sel');sumName.textContent=p.dataset.name;sumPrice.textContent='S$'+p.dataset.price;checkout.scrollIntoView({behavior:'smooth'})});
+let t=899;setInterval(()=>{t=t>0?t-1:899;timer.textContent=String(t/60|0).padStart(2,'0')+':'+String(t%60).padStart(2,'0')},1000);
+track('ViewContent',{content_name:'Milk Tea Bundles',content_category:'Milk Tea Powder',currency:'SGD'});
+let started=false;checkout.addEventListener('focusin',()=>{if(started)return;started=true;const s=document.querySelector('.plan.sel');track('InitiateCheckout',{content_name:s.dataset.name,value:+s.dataset.price,currency:'SGD',num_items:1})});
+checkout.onsubmit=e=>{e.preventDefault();const s=document.querySelector('.plan.sel');track('AddPaymentInfo',{value:+s.dataset.price,currency:'SGD'});
+location.href='thank-you.html?'+new URLSearchParams({p:s.dataset.name,a:s.dataset.price,n:document.getElementById('name').value.split(' ')[0]})};
+</script></body></html>

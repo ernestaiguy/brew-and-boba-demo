@@ -1,0 +1,13 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"><script src="track.js"></script><title>Brew & Boba — Thank You!</title></head><body>
+<div class="ty"><div class="big">🧋</div><h2 style="font-size:2.8rem">Thank you, <span id="n">friend</span>!</h2>
+<p>Your order is confirmed. Your milk tea is on its way 🚚</p>
+<div class="receipt"><div><span>Order #</span><b id="o"></b></div><div><span>Bundle</span><b id="p">Boba Lover (3 pouches)</b></div><div><span>Shipping</span><b>FREE</b></div><div><span>Total paid</span><b id="a">S$45</b></div><div><span>Est. delivery</span><b>1–2 days</b></div></div>
+<p>A confirmation email has been sent to your inbox.</p><br><a class="btn" href="index.html" data-track="Thank You Back Home">Back to Home</a></div>
+<footer>© 2026 Brew &amp; Boba · Demo website for filming only, not a real store.<br><a href="privacy.html" data-track="Footer Privacy">Privacy Policy</a> · <a href="terms.html" data-track="Footer Terms">Terms</a> · <a href="contact.html" data-track="Footer Contact">Contact</a></footer>
+<script>
+const q=new URLSearchParams(location.search);if(q.get('n'))n.textContent=q.get('n');if(q.get('p'))p.textContent=q.get('p');if(q.get('a'))a.textContent='S$'+q.get('a');
+o.textContent='BB-'+Math.floor(100000+Math.random()*900000);
+if(q.get('a')&&!sessionStorage.getItem('bb_done_'+location.search)){try{sessionStorage.setItem('bb_done_'+location.search,1)}catch(_){}
+track('Purchase',{value:+q.get('a'),currency:'SGD',content_name:q.get('p'),content_type:'product',order_id:o.textContent})}
+const e=['🧋','🍓','🍵','🍯','⭐','💖'];for(let i=0;i<40;i++){const c=document.createElement('div');c.className='confetti';c.textContent=e[i%6];c.style.left=Math.random()*100+'vw';c.style.animationDuration=2+Math.random()*3+'s';c.style.animationDelay=Math.random()*1.5+'s';document.body.appendChild(c)}
+</script></body></html>
