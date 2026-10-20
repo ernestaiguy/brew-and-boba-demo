@@ -30,6 +30,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <footer>© 2026 Brew &amp; Boba · Demo website for filming only, not a real store.<br><a href="privacy.html" data-track="Footer Privacy">Privacy Policy</a> · <a href="terms.html" data-track="Footer Terms">Terms</a> · <a href="contact.html" data-track="Footer Contact">Contact</a></footer>
 <script>
 leadForm.onsubmit=e=>{e.preventDefault();
-track('Lead',{content_name:'15% Off + Recipe E-book',content_category:'Newsletter',favourite_flavour:lf.value,currency:'SGD',value:0});
-lname.textContent=ln.value;leadForm.style.display='none';leadDone.style.display='block'};
+try{sessionStorage.setItem('bb_lead',JSON.stringify({name:ln.value,flavour:lf.value}))}catch(_){}
+location.href='lead-thank-you.html'};
 </script></body></html>

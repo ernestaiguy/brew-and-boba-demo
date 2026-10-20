@@ -1,0 +1,28 @@
+<!doctype html><html lang="en"><head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KQWDF2WQ');</script>
+<!-- End Google Tag Manager -->
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"><script src="track.js"></script><link rel="icon" href="logo.svg"><title>Brew & Boba — Thanks for Signing Up</title></head><body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KQWDF2WQ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div class="wrap"><nav><a class="logo" href="index.html"><img src="logo.svg" alt="" style="height:44px;vertical-align:middle;margin-right:8px">Brew &amp; Boba</a><a class="btn" href="sales.html" data-track="Nav Shop Now">Shop Now</a></nav>
+<div class="ty" style="min-height:60vh"><div class="big">🎉</div><h2 style="font-size:2.6rem">You're in, <span id="lname">friend</span>!</h2>
+<p>Thanks for signing up. Here's your 15% discount code:</p>
+<div class="timer" style="font-size:1.8rem;letter-spacing:.12em;margin:16px 0">SIP15</div>
+<p>Your free "12 Café Recipes" e-book is on its way to your inbox.</p><br>
+<a class="btn" href="sales.html?code=SIP15" data-track="Lead Thank You Shop">Shop Bundles with 15% Off →</a></div></div>
+<footer>© 2026 Brew &amp; Boba · Demo website for filming only, not a real store.<br><a href="privacy.html" data-track="Footer Privacy">Privacy Policy</a> · <a href="terms.html" data-track="Footer Terms">Terms</a> · <a href="contact.html" data-track="Footer Contact">Contact</a></footer>
+<script>
+var d={};try{d=JSON.parse(sessionStorage.getItem('bb_lead')||'{}')}catch(e){}
+if(d.name)lname.textContent=d.name;
+// Fire Lead once per sign-up, so refreshing this page doesn't count a second lead.
+if(d.name&&!d.tracked){track('Lead',{content_name:'15% Off + Recipe E-book',content_category:'Newsletter',favourite_flavour:d.flavour,currency:'SGD',value:0});
+d.tracked=1;try{sessionStorage.setItem('bb_lead',JSON.stringify(d))}catch(e){}}
+</script></body></html>
