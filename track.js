@@ -11,6 +11,9 @@ window.dataLayer = window.dataLayer || [];
 var CUSTOM_HEAD = '', CUSTOM_BODY = '';
 try { CUSTOM_HEAD = localStorage.getItem('bb_head_code') || ''; CUSTOM_BODY = localStorage.getItem('bb_body_code') || ''; } catch (e) {}
 function injectCode(html, target) {
+  // Skip a GTM container that is already hard-coded in the page, so it doesn't load twice.
+  var gtm = html.match(/GTM-[A-Z0-9]+/);
+  if (gtm && document.querySelector('script:not([src])') && document.documentElement.innerHTML.indexOf(gtm[0]) !== -1 && html.indexOf('<noscript') === -1) return;
   var box = document.createElement('div');
   box.innerHTML = html;
   Array.prototype.forEach.call(box.childNodes, function (node) {
