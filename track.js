@@ -6,6 +6,25 @@ var GTM_ID = '';          // e.g. 'GTM-XXXXXXX'
 
 window.dataLayer = window.dataLayer || [];
 
+// Custom header code saved from the site editor (admin.html), e.g. a pasted Meta Pixel snippet.
+// Stored in this browser only, so it is injected into <head> on every page load.
+var CUSTOM_HEAD = '';
+try { CUSTOM_HEAD = localStorage.getItem('bb_head_code') || ''; } catch (e) {}
+if (CUSTOM_HEAD && location.pathname.indexOf('admin') === -1) {
+  var box = document.createElement('div');
+  box.innerHTML = CUSTOM_HEAD;
+  Array.prototype.forEach.call(box.childNodes, function (node) {
+    if (node.nodeName === 'SCRIPT') {
+      var s = document.createElement('script');
+      Array.prototype.forEach.call(node.attributes, function (a) { s.setAttribute(a.name, a.value); });
+      s.text = node.textContent;
+      document.head.appendChild(s);   // inline scripts run immediately
+    } else if (node.nodeType === 1 && node.nodeName !== 'NOSCRIPT') {
+      document.head.appendChild(node.cloneNode(true));
+    }
+  });
+}
+
 if (META_PIXEL_ID) {
   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
   n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
@@ -26,7 +45,8 @@ var STANDARD = ['PageView','ViewContent','AddToCart','InitiateCheckout','AddPaym
 function track(name, params) {
   params = params || {};
   window.dataLayer.push(Object.assign({ event: name }, params));
-  if (window.fbq) fbq(STANDARD.indexOf(name) > -1 ? 'track' : 'trackCustom', name, params);
+  // A pasted pixel snippet already sends its own PageView, so don't send a second one.
+  if (window.fbq && !(name === 'PageView' && CUSTOM_HEAD)) fbq(STANDARD.indexOf(name) > -1 ? 'track' : 'trackCustom', name, params);
   console.log('%c[track] ' + name, 'color:#b07a4a;font-weight:bold', params);
 }
 

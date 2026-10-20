@@ -1,0 +1,50 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>Site Editor · Brew & Boba</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Poppins,system-ui,sans-serif;background:#f4f5f7;color:#1f2430;font-size:14px}
+.top{background:#1f2430;color:#fff;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+.top b{font-size:15px}.top a{color:#fff;text-decoration:none;background:#3a4254;padding:8px 14px;border-radius:8px;font-size:13px}
+.app{display:flex;min-height:calc(100vh - 56px)}
+aside{width:230px;background:#fff;border-right:1px solid #e3e5ea;padding:18px 10px;flex-shrink:0}
+aside div{padding:10px 14px;border-radius:8px;color:#5b6272;margin-bottom:2px;cursor:default}
+aside .on{background:#eef1ff;color:#3b5bdb;font-weight:600}
+aside small{display:block;padding:14px 14px 6px;color:#9aa0ad;font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+main{flex:1;padding:30px;max-width:900px}
+h1{font-size:22px;margin-bottom:4px}.sub{color:#6b7280;margin-bottom:24px}
+.panel{background:#fff;border:1px solid #e3e5ea;border-radius:12px;padding:22px;margin-bottom:18px}
+.panel h2{font-size:15px;margin-bottom:4px}.panel p{color:#6b7280;font-size:13px;margin-bottom:12px}
+textarea{width:100%;min-height:260px;font:12.5px/1.5 ui-monospace,Menlo,monospace;background:#0f1320;color:#c9f29b;border:0;border-radius:10px;padding:16px;resize:vertical}
+textarea:focus{outline:3px solid #b7c4ff}
+.bar{display:flex;gap:10px;align-items:center;margin-top:14px;flex-wrap:wrap}
+button{font:inherit;font-weight:600;border:0;border-radius:8px;padding:10px 18px;cursor:pointer}
+.save{background:#3b5bdb;color:#fff}.ghost{background:#eef0f4;color:#1f2430}
+.status{font-size:13px;color:#2f9e44;font-weight:600}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:99px;margin-left:8px;vertical-align:middle}
+.live{background:#d3f9d8;color:#2b8a3e}.off{background:#f1f3f5;color:#868e96}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(100px);background:#1f2430;color:#fff;padding:12px 22px;border-radius:10px;transition:transform .3s}
+.toast.show{transform:translateX(-50%) translateY(0)}
+@media(max-width:700px){aside{display:none}main{padding:18px}}
+</style></head><body>
+<div class="top"><b>🧋 Brew &amp; Boba · Site Editor</b><a href="index.html" target="_blank">View site ↗</a></div>
+<div class="app">
+<aside><small>Store</small><div>Dashboard</div><div>Pages</div><div>Products</div><div>Orders</div>
+<small>Settings</small><div>General</div><div>Domains</div><div class="on">Tracking &amp; Custom Code</div><div>Payments</div></aside>
+<main>
+<h1>Tracking &amp; Custom Code</h1><p class="sub">Add tracking pixels and scripts to every page of your website.</p>
+<div class="panel"><h2>Header code <span id="st" class="badge off">Not installed</span></h2>
+<p>Paste code that should go inside the <code>&lt;head&gt;</code> tag on every page, such as the Meta Pixel base code or Google Tag Manager.</p>
+<textarea id="code" spellcheck="false" placeholder="<!-- Meta Pixel Code -->&#10;<script>&#10;  ...paste your pixel code here...&#10;</script>"></textarea>
+<div class="bar"><button class="save" id="save">Save</button><button class="ghost" id="clear">Remove code</button><span class="status" id="msg"></span></div></div>
+<div class="panel"><h2>Where is this added?</h2><p>Home, Shop, Thank You, Contact, Privacy and Terms pages.</p></div>
+</main></div>
+<div class="toast" id="toast">✅ Saved! Your code is now live on every page.</div>
+<script>
+function get(){try{return localStorage.getItem('bb_head_code')||''}catch(e){return ''}}
+function badge(){var on=!!get();st.textContent=on?'Installed':'Not installed';st.className='badge '+(on?'live':'off')}
+code.value=get();badge();
+save.onclick=function(){try{localStorage.setItem('bb_head_code',code.value.trim())}catch(e){alert('Could not save in this browser.');return}
+badge();toast.classList.add('show');setTimeout(function(){toast.classList.remove('show')},2500)};
+clear.onclick=function(){if(!confirm('Remove the header code?'))return;try{localStorage.removeItem('bb_head_code')}catch(e){}code.value='';badge()};
+</script></body></html>
