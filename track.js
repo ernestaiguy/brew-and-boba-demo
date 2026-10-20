@@ -6,23 +6,27 @@ var GTM_ID = '';          // e.g. 'GTM-XXXXXXX'
 
 window.dataLayer = window.dataLayer || [];
 
-// Custom header code saved from the site editor (admin.html), e.g. a pasted Meta Pixel snippet.
-// Stored in this browser only, so it is injected into <head> on every page load.
-var CUSTOM_HEAD = '';
-try { CUSTOM_HEAD = localStorage.getItem('bb_head_code') || ''; } catch (e) {}
-if (CUSTOM_HEAD && location.pathname.indexOf('admin') === -1) {
+// Custom code saved from the site editor (admin.html), e.g. a pasted Meta Pixel snippet.
+// Stored in this browser only. Header code goes into <head>, body code at the end of <body>.
+var CUSTOM_HEAD = '', CUSTOM_BODY = '';
+try { CUSTOM_HEAD = localStorage.getItem('bb_head_code') || ''; CUSTOM_BODY = localStorage.getItem('bb_body_code') || ''; } catch (e) {}
+function injectCode(html, target) {
   var box = document.createElement('div');
-  box.innerHTML = CUSTOM_HEAD;
+  box.innerHTML = html;
   Array.prototype.forEach.call(box.childNodes, function (node) {
     if (node.nodeName === 'SCRIPT') {
       var s = document.createElement('script');
       Array.prototype.forEach.call(node.attributes, function (a) { s.setAttribute(a.name, a.value); });
       s.text = node.textContent;
-      document.head.appendChild(s);   // inline scripts run immediately
-    } else if (node.nodeType === 1 && node.nodeName !== 'NOSCRIPT') {
-      document.head.appendChild(node.cloneNode(true));
+      target.appendChild(s);   // inline scripts run immediately
+    } else if (node.nodeType === 1 && (target === document.body || node.nodeName !== 'NOSCRIPT')) {
+      target.appendChild(node.cloneNode(true));
     }
   });
+}
+if (location.pathname.indexOf('admin') === -1) {
+  if (CUSTOM_HEAD) injectCode(CUSTOM_HEAD, document.head);
+  if (CUSTOM_BODY) document.addEventListener('DOMContentLoaded', function () { injectCode(CUSTOM_BODY, document.body); });
 }
 
 if (META_PIXEL_ID) {

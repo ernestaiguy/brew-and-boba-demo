@@ -37,14 +37,22 @@ button{font:inherit;font-weight:600;border:0;border-radius:8px;padding:10px 18px
 <p>Paste code that should go inside the <code>&lt;head&gt;</code> tag on every page, such as the Meta Pixel base code or Google Tag Manager.</p>
 <textarea id="code" spellcheck="false" placeholder="<!-- Meta Pixel Code -->&#10;<script>&#10;  ...paste your pixel code here...&#10;</script>"></textarea>
 <div class="bar"><button class="save" id="save">Save</button><button class="ghost" id="clear">Remove code</button><span class="status" id="msg"></span></div></div>
+<div class="panel"><h2>Body code <span id="st2" class="badge off">Not installed</span></h2>
+<p>Paste code that should go at the end of the <code>&lt;body&gt;</code> tag on every page, such as a Google Tag Manager &lt;noscript&gt; block, chat widgets or event scripts.</p>
+<textarea id="code2" spellcheck="false" placeholder="<script>&#10;  ...paste your body code here...&#10;</script>"></textarea>
+<div class="bar"><button class="save" id="save2">Save</button><button class="ghost" id="clear2">Remove code</button></div></div>
 <div class="panel"><h2>Where is this added?</h2><p>Home, Shop, Thank You, Contact, Privacy and Terms pages.</p></div>
 </main></div>
 <div class="toast" id="toast">✅ Saved! Your code is now live on every page.</div>
 <script>
-function get(){try{return localStorage.getItem('bb_head_code')||''}catch(e){return ''}}
-function badge(){var on=!!get();st.textContent=on?'Installed':'Not installed';st.className='badge '+(on?'live':'off')}
-code.value=get();badge();
-save.onclick=function(){try{localStorage.setItem('bb_head_code',code.value.trim())}catch(e){alert('Could not save in this browser.');return}
-badge();toast.classList.add('show');setTimeout(function(){toast.classList.remove('show')},2500)};
-clear.onclick=function(){if(!confirm('Remove the header code?'))return;try{localStorage.removeItem('bb_head_code')}catch(e){}code.value='';badge()};
+function get(k){try{return localStorage.getItem(k)||''}catch(e){return ''}}
+function setup(key,ta,badgeEl,saveBtn,clearBtn,label){
+  function badge(){var on=!!get(key);badgeEl.textContent=on?'Installed':'Not installed';badgeEl.className='badge '+(on?'live':'off')}
+  ta.value=get(key);badge();
+  saveBtn.onclick=function(){try{localStorage.setItem(key,ta.value.trim())}catch(e){alert('Could not save in this browser.');return}
+    badge();toast.textContent='✅ Saved! Your '+label+' code is now live on every page.';toast.classList.add('show');setTimeout(function(){toast.classList.remove('show')},2500)};
+  clearBtn.onclick=function(){if(!confirm('Remove the '+label+' code?'))return;try{localStorage.removeItem(key)}catch(e){}ta.value='';badge()};
+}
+setup('bb_head_code',code,st,save,clear,'header');
+setup('bb_body_code',code2,st2,save2,clear2,'body');
 </script></body></html>
